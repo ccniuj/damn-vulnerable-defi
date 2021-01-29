@@ -17,3 +17,5 @@ Share your solutions, comments, feedback and more in Twitter with [#DamnVulnerab
 All Solidity code, practices and patterns in this repository are DAMN VULNERABLE and for educational purposes only.
 
 DO NOT USE IN PRODUCTION.
+
+**Notice: Use node 10 to install**

